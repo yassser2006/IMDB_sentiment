@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-5">
+      {% with messages = get_flashed_messages()  %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <div class="card card-body">
+        <form action="/query" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" name="word" placeholder="Enter your word or term here">
+          </div>
+          <button class="btn btn-primary btn-block">
+            Search 
+          </button>
+        </form>
+      <br>
+      <br>
+      </div>
+
+    </div>
+    <div class="col-md-7">
+      <div class="col-md-12" style="display:{{flag}};">
+        {{result}}
+        <div class="col-md-6" >
+          <div class="card card-body">
+            <h5 class="card-title" style="color: green;">Postaive</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{pos}}</h6>
+            <h5 class="card-title">Movie's Title: {{pos_review[0][1]}}</h5>
+            <p class="card-text">{{pos_review[0][0]}}</p>
+          </div>
+        </div>
+        <div class="col-md-6" >
+          <div class="card card-body">
+            <h5 class="card-title" style="color: red;">Negative</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{neg}}</h6>
+            <h5 class="card-title">Movie's Title: {{neg_review[0][1]}}</h5>
+            <p class="card-text">{{neg_review[0][0]}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-5">
+      {% with messages = get_flashed_messages()  %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="card card-body">
+        <form action="" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" name="review" placeholder="Enter your review here">
+          </div>
+          <button class="btn btn-primary btn-block">
+            Check 
+          </button>
+        </form>
+      </div>
+      <br>
+      <br>
+    </div>
+    <div class="col-md-7">
+      <div class="col-md-12">
+        {% if result == 'Positive' %}
+        <div class="alert alert-primary" role="alert">
+          <string>Positive</string>
+        </div>
+        {% endif %}
+        {% if result == 'Negative' %}
+        <div class="alert alert-danger" role="alert">
+          <string>Negative</string>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
